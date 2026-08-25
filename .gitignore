@@ -1,8 +1,11 @@
 node_modules
 dist
-data
+.next
+.turbo
 *.log
 .DS_Store
 .env
-.vite
+.env.local
+data
+coverage
 .omc

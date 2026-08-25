@@ -1,0 +1,24 @@
+{
+  "name": "altair",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "typecheck": "turbo typecheck",
+    "lint": "turbo lint",
+    "db:up": "docker compose up -d postgres redis",
+    "db:down": "docker compose down",
+    "db:generate": "pnpm --filter @altair/database generate",
+    "db:migrate": "pnpm --filter @altair/database migrate",
+    "db:studio": "pnpm --filter @altair/database studio",
+    "setup": "pnpm install && pnpm db:up && sleep 2 && pnpm db:migrate"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2"
+  },
+  "packageManager": "pnpm@10.15.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

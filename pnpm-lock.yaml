@@ -143,7 +143,17 @@ importers:
         version: 5.9.3
 
   packages/auth:
+    dependencies:
+      argon2:
+        specifier: ^0.43.1
+        version: 0.43.1
+      jose:
+        specifier: ^6.0.12
+        version: 6.2.10
     devDependencies:
+      '@types/node':
+        specifier: ^24.3.0
+        version: 24.13.3
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
@@ -931,6 +941,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@phc/format@1.0.0':
+    resolution: {integrity: sha512-m7X9U6BG2+J+R1lSOdCiITLLrxm+cWlNI3HUFA92oLO77ObGNzaKdh8pMLqdZcshtkKuV84olNNXDfMc4FezBQ==}
+    engines: {node: '>=10'}
+
   '@pinojs/redact@0.4.0':
     resolution: {integrity: sha512-k2ENnmBugE/rzQfEcdWHcCY+/FM3VLzH9cYEsbdsoqrvzAKRhUZeRNhAZvB8OitQJ1TBed3yqWtdjzS6wJKBwg==}
 
@@ -1082,6 +1096,10 @@ packages:
 
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
+
+  argon2@0.43.1:
+    resolution: {integrity: sha512-TfOzvDWUaQPurCT1hOwIeFNkgrAJDpbBGBGWDgzDsm11nNhImc13WhdGdCU6K7brkp8VpeY07oGtSex0Wmhg8w==}
+    engines: {node: '>=16.17.0'}
 
   atomic-sleep@1.0.0:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
@@ -1336,6 +1354,9 @@ packages:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
 
+  jose@6.2.10:
+    resolution: {integrity: sha512-iiW7J9qRFlGxvCOIBDBDxFePQSn7ZMAnrYGhrrOo6siO/MIqwfyilLR27pkfDgUk+raLuzADS8A3S/KLBisc0g==}
+
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
     engines: {node: '>=10'}
@@ -1468,8 +1489,16 @@ packages:
   node-abort-controller@3.1.1:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
 
+  node-addon-api@8.9.2:
+    resolution: {integrity: sha512-VijLXbi3UACN69I0JVXJsX4tjACjNoQDgv2gTF6sx2wWEi8tkSg2eX8p5gSIFi8z2+DL3oHmY6OyKce38SDolg==}
+    engines: {node: ^18 || ^20 || >= 21}
+
   node-gyp-build-optional-packages@5.2.2:
     resolution: {integrity: sha512-s+w+rBWnpTMwSFbaE0UXsRlg7hU4FjekKU4eyAih5T8nJuNZT1nNsskXpxmeqSK9UzkBl6UgRlnKc8hz8IEqOw==}
+    hasBin: true
+
+  node-gyp-build@4.8.4:
+    resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
     hasBin: true
 
   on-exit-leak-free@2.1.2:
@@ -2129,6 +2158,8 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.5.23':
     optional: true
 
+  '@phc/format@1.0.0': {}
+
   '@pinojs/redact@0.4.0': {}
 
   '@swc/helpers@0.5.15':
@@ -2250,6 +2281,12 @@ snapshots:
       fast-uri: 3.1.6
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
+
+  argon2@0.43.1:
+    dependencies:
+      '@phc/format': 1.0.0
+      node-addon-api: 8.9.2
+      node-gyp-build: 4.8.4
 
   atomic-sleep@1.0.0: {}
 
@@ -2486,6 +2523,8 @@ snapshots:
 
   jiti@2.7.0: {}
 
+  jose@6.2.10: {}
+
   joycon@3.1.1: {}
 
   json-schema-ref-resolver@3.0.0:
@@ -2602,10 +2641,14 @@ snapshots:
 
   node-abort-controller@3.1.1: {}
 
+  node-addon-api@8.9.2: {}
+
   node-gyp-build-optional-packages@5.2.2:
     dependencies:
       detect-libc: 2.1.2
     optional: true
+
+  node-gyp-build@4.8.4: {}
 
   on-exit-leak-free@2.1.2: {}
 

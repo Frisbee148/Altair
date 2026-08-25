@@ -28,3 +28,15 @@ export interface HealthResponse {
   redis?: boolean;
   timestamp: string;
 }
+
+export interface PublicUser {
+  id: string;
+  email: string;
+  username: string;
+  createdAt: string;
+}
+
+export interface AuthResponse {
+  user: PublicUser;
+  accessToken: string;
+}

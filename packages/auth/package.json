@@ -5,7 +5,15 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "argon2": "^0.43.1",
+    "jose": "^6.0.12"
+  },
   "devDependencies": {
+    "@types/node": "^24.3.0",
     "typescript": "^5.9.2"
   }
 }

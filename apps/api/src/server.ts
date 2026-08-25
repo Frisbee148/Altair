@@ -1,10 +1,13 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
+import cookie from "@fastify/cookie";
 import Redis from "ioredis";
 import { env } from "@altair/config";
 import { pingDb } from "@altair/database";
 import { createLogger } from "@altair/logger";
 import type { HealthResponse } from "@altair/types";
+import { attachUser } from "./auth/middleware.js";
+import { authRoutes } from "./modules/auth/routes.js";
 
 const log = createLogger("api");
 
@@ -39,16 +42,30 @@ async function buildHealth(service: string, checkDeps = false): Promise<HealthRe
 
 export async function buildServer() {
   const app = Fastify({ logger: false });
-  await app.register(cors, { origin: true });
+
+  await app.register(cors, {
+    origin: true,
+    credentials: true,
+  });
+  await app.register(cookie);
+
+  app.decorateRequest("user", null);
+
+  app.addHook("preHandler", async (request) => {
+    await attachUser(request);
+  });
 
   app.get("/health", async () => buildHealth("api"));
   app.get("/api/health", async () => buildHealth("api", true));
 
   app.get("/", async () => ({
     name: "Altair API",
-    phase: 1,
+    phase: 2,
     docs: "/api/health",
+    auth: ["/api/auth/register", "/api/auth/login", "/api/auth/logout", "/api/auth/me"],
   }));
+
+  await app.register(authRoutes);
 
   return app;
 }

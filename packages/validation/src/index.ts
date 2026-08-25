@@ -6,8 +6,12 @@ export const CreateProjectSchema = z.object({
 
 export const RegisterSchema = z.object({
   email: z.string().email(),
-  username: z.string().min(3).max(32),
-  password: z.string().min(8),
+  username: z
+    .string()
+    .min(3)
+    .max(32)
+    .regex(/^[a-zA-Z0-9_]+$/, "Username must be alphanumeric or underscore"),
+  password: z.string().min(8).max(128),
 });
 
 export const LoginSchema = z.object({
